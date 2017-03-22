@@ -37,5 +37,14 @@ class StackOverflowSuite extends FunSuite with BeforeAndAfterAll {
     assert(instantiatable, "Can't instantiate a StackOverflow object")
   }
 
+  test("prueba metodo groupedPostings"){
+    @transient lazy val conf: SparkConf = new SparkConf().setMaster("local").setAppName("StackOverflow")
+    @transient lazy val sc: SparkContext = new SparkContext(conf)
+    val lines   = sc.textFile("stackoverflow/stackoverflow.csv")
+    val raw     = StackOverflow.rawPostings(lines)
+    val grouped = StackOverflow.groupedPostings(raw)
+    assert(1 == 1)
+  }
+
 
 }
